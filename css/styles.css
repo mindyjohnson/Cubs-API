@@ -1,0 +1,60 @@
+
+.orange {
+    background: #ffffff; 
+    border: 1px solid #0e3386;
+    margin-top: 20px;
+    min-height: 220px;
+    padding-top: 0px;
+    width: 400px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+#blue {
+    background-color: #0e3386;
+    height: 70px;
+    width: 400px;
+}
+@font-face {
+	font-family: 'FranklinCondensedBlack';
+	src: url('fonts/Franklin Gothic Extra Condensed.ttf');
+}
+
+h1, h3 {font-family: 'FranklinCondensedBlack';
+
+}
+h1 {
+    font-size: 40px;
+    color: #D12325;
+    padding-top: 20px;
+    margin: 0px;
+}
+h3 {
+    font-size: 30px;
+    margin-top: 8px !important;
+    padding-bottom: 20px;
+}
+.head {
+    font-family: 'FranklinCondensedBlack';
+    font-size: 20px;
+}
+@font-face {
+	font-family: 'MillerItalic';
+	src: url('fonts/fontscore.com_m-miller-text-italic.otf');
+}
+h5 {font-family: 'MillerItalic';
+font-size: 16px;
+line-height: 1.5em;}
+
+@font-face {
+	font-family: 'FranklinLightCondensed';
+	src: url('fonts/ITC Franklin Gothic LT Book Condensed.ttf');
+}
+FRABK.TTF
+@font-face {
+	font-family: 'FranklinReg';
+	src: url('fonts/FRABK.TTF');
+}
+p {
+    font-family: 'FranklinLightCondensed';
+    font-size: 18px;
+}

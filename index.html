@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html>
+	
+	<style>
+		#myslider{width:400px !important;height:400px;border:1px solid gray;margin:0 auto}
+		.instaslider-wrapper{width:400px;height:400px;background:#e7e7e7;overflow:hidden}
+		.instaslider-wrapper ul li img{width:400px !important; height: 400px}
+		.over_map { position: absolute; top: 20px; right: 50px}
+		html { height: 100% }
+		body { height: 100%; margin: 0; padding: 0 }
+		#map { height: 100%; line-height: normal ! important; }
+		.twitter {
+			position:fixed;
+			left:0;
+			bottom:0;
+			width:100%;
+			color:#fff;
+			height: 40px;
+			overflow:hidden;
+		}
+		.subhead {
+			font-size: 20px;
+			color: #0e3386;
+			font-family: 'FranklinCondensedBlack';
+		}
+		
+		iframe {
+			width: 100% !important;
+		}
+		.twitter2 {
+			position:fixed;
+			left:0;
+			bottom: 40px;
+			background:#0e3386;
+			background:rgba(14, 51, 134, .8);
+			width:250px;
+			height:40px;
+			color:#fff;
+			padding-left: 20px;
+			padding-bottom: 30px !important;
+			overflow:hidden;
+			}
+		.twitter3 {
+			position:fixed;
+			left:20px;
+			top:20px;
+			font-family: 'FranklinCondensedBlack';
+			background:#0e3386;
+			background:rgba(255, 255, 255, .8);
+			padding: 20px;
+			width: 500px;
+			font-size: 80px;
+			color: #D12325;
+		}
+		li {
+			line-height: 1.5em;
+	
+		}
+		.windows {overflow: hidden;
+		white-space: nowrap;}
+	</style>
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Cubs API Project</title>
+		
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="http://codeorigin.jquery.com/jquery-2.0.3.min.js"></script>
+		
+	<script src="js/instaslider.jquery.js"></script>
+
+		<script src="js/bootstrap.min.js"></script>
+
+		<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Xum1CbC8hsWyvdeg73ddJgQrOhl5QsI&sensor=false">
+		</script>
+<script type="text/javascript">
+	
+	var searchTerm = "@cubs";
+function initialize() {
+    var locations = [
+        ['<div class="windows"><b>@ Blue Jays</b><br />September 8-10</div>', 43.6413, -79.3892, 30, 'http://mindyj.com/wp-content/uploads/2013/11/Jays_logo-e1384005233190.png', '@bluejays', '<a href="http://m.mlb.com/tor/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/bluejays.png"></a>'],
+        ['Angels', 33.7999, -117.8832, 29, 'http://mindyj.com/wp-content/uploads/2013/11/Angels_logo-e1384004879703.png', '@angels', '<a href="http://m.angels.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/angels.png"></a>'],
+        ['<div class="windows"><b>@ Diamondbacks</b><br />July 18-20</div>', 33.4451, -112.0666, 28, 'http://mindyj.com/wp-content/uploads/2013/11/diamondbacks-e1384004733318.png', '@dbacks', '<a href="http://m.dbacks.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/dbacks.png"></a>'],
+        ['<b>@ Red Sox</b><br />June 30-July 2', 42.3464, -71.0975, 27, 'http://mindyj.com/wp-content/uploads/2013/11/redsox-e1384005521885.png', '@redsox', '<a href="http://m.mlb.com/bos/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/redsox1.png"></a>'],
+        ['<b>@ Marlins</b><br />June 16-18', 25.7781, -80.2197, 26, 'http://mindyj.com/wp-content/uploads/2013/11/marlins-e1384006037336.png', '@marlins', '<a href="http://m.marlins.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/marlins1.png"></a>'],
+        ['Athletics', 37.7517, -122.2006, 25, 'http://mindyj.com/wp-content/uploads/2013/11/As-e1384005053259.png', '@athleticsbaseball', '<a href="http://m.athletics.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/athletics.png"></a>'],
+        ['Orioles', 39.2839, -76.6217, 24, 'http://mindyj.com/wp-content/uploads/2013/11/Orioles-e1384005378203.png', '@orioles', '<a href="http://m.orioles.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/orioles.png"></a>'],
+        ['Indians', 41.4958, -81.6853, 23, 'http://mindyj.com/wp-content/uploads/2013/11/indians-e1384005205714.png', '@indians', '<a href="http://m.indians.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/indians1.png"></a>'],
+        ['Mariners', 47.5914, -122.3325, 22, 'http://mindyj.com/wp-content/uploads/2013/11/mariners-e1384005959621.png', '@mariners', '<a href="http://m.mlb.com/sea/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/mariners1.png"></a>'],
+        ['Rays', 27.7683, -82.6533, 21, 'http://mindyj.com/wp-content/uploads/2013/11/TB-e1384005931808.png', '@rays', '<a href="http://m.rays.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/rays.png"></a>'],
+        ['Rangers', 32.7514, -97.0828, 20, 'http://mindyj.com/wp-content/uploads/2013/11/Rangers_Logo-e1384005573219.png', '@rangers', '<a href="http://m.rangers.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/rangers.png"></a>'],
+        ['Royals', 39.0514, -94.4806, 19, 'http://mindyj.com/wp-content/uploads/2013/11/Royals-e1384005771613.png', '@royals', '<a href="http://m.mlb.com/kc/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/royals.png"></a>'],
+        ['<div class="windows"><b>@ Reds</b><br />April 28-30<br />July 8-10<br />August 26-28</div>', 39.0972, -84.5069, 18, 'http://mindyj.com/wp-content/uploads/2013/11/Reds-e1384005548747.png', '@reds', '<a href="http://m.reds.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/reds.png"></a>'],
+        ['<b>@ White Sox</b><br />May 7-8', 41.8300, -87.6339, 17, 'http://mindyj.com/wp-content/uploads/2013/11/white-sox-e1384005886841.png', '@whitesox', '<a href="http://m.mlb.com/cws/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/whitesox.png"></a>'],
+        ['<b>@ Braves</b><br />May 9-11', 33.7353, -84.3894, 16, 'http://mindyj.com/wp-content/uploads/2013/11/braves-e1384004975623.png', '@braves', '<a href="http://m.braves.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/braves1.png"></a>'],
+        ['Twins', 44.9817, -93.2783, 15, 'http://mindyj.com/wp-content/uploads/2013/11/Twins-e1384005858604.png', '@twins', '<a href="http://m.twins.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/twins.png"></a>'],
+        ['<b>@ Padres</b><br />May 22-25', 32.7073, -117.1566, 14, 'http://mindyj.com/wp-content/uploads/2013/11/padres-e1384005403725.png', '@padres', '<a href="http://m.padres.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/padres1.png"></a>'],
+        ['<div class="windows"><b>@ Brewers</b><br />April 25-27<br />May 30-June 1<br />September 26-28</div>', 43.0283, -87.9711, 13, 'http://mindyj.com/wp-content/uploads/2013/11/brewers_logo-e1384004905823.png', '@brewers', '<a href="http://m.brewers.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/brewers.png"></a>'],
+        ['<b>@ Dodgers</b><br />August 1-3', 34.0736, -118.2400, 12, 'http://mindyj.com/wp-content/uploads/2013/11/Dodgers-e1384006074501.png', '@dodgers', '<a href="http://m.mlb.com/la/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/dodgers.png"></a>'],
+        ['Tigers', 42.3392, -83.0486, 11, 'http://mindyj.com/wp-content/uploads/2013/11/tigers-e1384006165518.png', '@tigers', '<a href="http://m.tigers.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/tigers1.png"></a>'],
+        ['<div class="windows"><b>@ Cardinals</b><br />April 11-13<br />May 13-15<br />August 29-31</div>', 38.6225, -90.1931, 10, 'http://mindyj.com/wp-content/uploads/2013/11/Cardinals-e1384005100260.png', '@cardinals', '<a href="http://m.mlb.com/stl/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/cardinals.png"></a>'],
+        ['<b>Cubs</b>', 41.9483, -87.6556, 9, 'http://mindyj.com/wp-content/uploads/2013/11/Cubs-Logo-e1384004709742.png', '@cubs', '<a href="http://m.cubs.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/cubs.png"></a>'],
+        ['<b>@ Yankees</b><br />April 15-16', 40.8292, -73.9264, 8, 'http://mindyj.com/wp-content/uploads/2013/11/Yankees-e1384006139464.png', '@yankees', '<a href="http://m.yankees.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/yankees.png"></a>'],
+        ['<div class="windows"><b>@ Pirates</b><br />March 31<br />April 2-3<br />June 9-12<br />August 12-14</div>', 40.4469, -80.0058, 7, 'http://mindyj.com/wp-content/uploads/2013/11/pirates-e1384005605420.png', '@pirates', '<a href="http://m.pirates.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/pirates1.png"></a>'],
+        ['<b>@ Rockies</b><br />August 5-7', 39.7561, -104.9942, 6, 'http://mindyj.com/wp-content/uploads/2013/11/rockies-e1384005745331.png', '@rockies', '<a href="http://m.rockies.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/rockies1.png"></a>'],
+        ['<div class="windows"><b>@ Mets</b><br />August 15-18</div>', 40.7569, -73.8458, 5, 'http://mindyj.com/wp-content/uploads/2013/11/Mets-e1384006217658.png', '@mets', '<a href="http://m.mlb.com/nym/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/mets.png"></a>'],
+        ['<b>@ Giants</b><br />May 26-28', 37.7786,-122.3892, 4, 'http://mindyj.com/wp-content/uploads/2013/11/giants-e1384004810351.png', '@giants', '<a href="http://m.giants.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/giants1.png"></a>'],
+        ['<b>@ Phillies</b><br />June 13-15', 39.9058, -75.1664, 3, 'http://mindyj.com/wp-content/uploads/2013/11/Phillies-logo-e1384005494408.png', '@phillies', '<a href="http://m.mlb.com/phi/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/phillies.png"></a>'],
+        ['Astros', 29.7569, -95.3556, 2, 'http://mindyj.com/wp-content/uploads/2013/11/astros-e1384005014317.png', '@astros', '<a href="http://m.astros.mlb.com/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/astros1.png"></a>'],
+        ['<div class="windows"><b>@ Nationals</b><br />July 4-6</div>', 38.8728, -77.0075, 1, 'http://mindyj.com/wp-content/uploads/2013/11/nationals_logo-e1384005353319.png', '@nationals', '<a href="http://m.mlb.com/was/instagram" target="_blank"><img src="http://mindyj.com/wp-content/uploads/2013/11/nationals.png"></a>']
+    ];
+
+	var myOptions = {
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+	center: new google.maps.LatLng(38.8738, -77)
+    }
+    window.map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var bounds = new google.maps.LatLngBounds();
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: locations[i][4]
+	    });
+
+        bounds.extend(marker.position);
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+		console.log (locations[i][5]);
+		searchTerm = locations[i][5];
+		insta = locations[i][6];
+		
+		loadInstagramPhotos();
+		
+		$('#blue').html("");
+		document.getElementById("blue").innerHTML= insta;
+
+            }
+        })(marker, i));
+
+    }
+
+    var listener = google.maps.event.addListener(map, "idle", function () {
+        map.setZoom(4);
+        google.maps.event.removeListener(listener);
+    });
+}
+
+function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+    document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+    </script>
+
+<script type="text/javascript">
+    
+        $(document).ready(function(){
+        var news_limit = 10;
+        var news_offset = 0;
+
+        $('a#load_more').click(function(){
+            load_more_news();
+        });
+
+        function load_more_news(){
+            news_offset += news_limit;
+            $.ajax({ 
+                url: "http://api.espn.com/v1/sports/baseball/mlb/teams/16/news", 
+                data: { 
+                    // enter your developer api key here 
+                    apikey: "6ebxax7p3x96hnr3b2dcgm7s",
+                    // the type of data you're expecting back from the api 
+                    _accept: "application/json",
+                    // number of results to be shown
+                    limit: news_limit,
+                    offset: news_offset
+                }, 
+                dataType: "jsonp", 
+                beforeSend: function(){
+                    $('#result').html('Loading...');
+                },
+                success: function(data) { 
+                    $('#result').html('');
+                    // create an unordered list of headlines 
+                    var ul = $('ul#list'); 
+                    $.each(data.headlines, function() { 
+                     var htm = this.headline;
+                     htm += '<a class="readmore" href="'+this.links.web.href+'" target="_blank">   Read more</a>';
+                        var li = $('<li/>').html(htm); 
+                        ul.append(li) 
+                    }); 
+                }, 
+                error: function() { 
+                     // handle the error 
+                } 
+            });
+        }
+        load_more_news();
+	
+	
+	
+	
+	
+    });
+	
+	
+function loadInstagramPhotos(){
+		console.log("loadInstagramPhotos called")
+		
+		$('#myslider').html("");
+		$('#myslider').instaSlider({
+			clientID: '334407512',
+			access_token: '334407512.e68260f.4b591d2ed59345baac8e8854b046084d',
+			search: searchTerm
+		});
+		
+		
+	}
+
+    
+</script>
+
+	</head>
+	<body>
+    <div id="map"></div>
+	<div class="twitter3">Chicago Cubs
+	<p class="subhead">Click a team on the map to see when the Cubs will be there in 2014.</p>	
+	</div>
+	<div class="over_map">
+		<div class="row">
+
+	<div class="col-md-5">
+		<div class="row">
+				<div id="myslider"></div>
+				<div id="testdiv"></div>
+	
+	<script>
+		
+		
+		loadInstagramPhotos();
+
+	</script>
+	<div id="blue">
+		<a href="http://m.cubs.mlb.com/instagram" target="_blank"><img src="img/cubs.png"></a>
+	</div>
+	
+		</div>
+		<div class="row orange">
+			        <h1>Latest Cubs News</h1>
+        <div class="news">
+            <div style="text-align:center" id="result"></div>
+            <div>
+                <ul id="list"></ul>
+            </div>
+        </div>    
+       <div class="button"><a class="button white bigrounded" id="load_more">Load More</a></div>
+		</div>
+	</div>
+</div>
+
+    
+	<div class="twitter2"><h3>Latest #Cubs Tweets: </h3></div>
+    	<div class="twitter">
+			<iframe src="http://www.mindyj.com/static/twitter"></iframe>
+	</div>
+	</div>
+	</body>
+</html>
